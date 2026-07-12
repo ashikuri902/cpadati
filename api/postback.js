@@ -1,8 +1,8 @@
 export default async function handler(req, res) {
   const { sid, payout, status, offer_id, offer_name } = req.query;
 
-  const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-  const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+  const BOT_TOKEN = 8757239334:AAFRkYJ62w2n3WhcWharR_O06h4GYgpPMcU;
+  const CHAT_ID = -1004482264129;
 
   const message = `
 🎉 New Conversion
