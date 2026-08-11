@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Premium USA User Generator</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+
+  background:
+  linear-gradient(
+    135deg,
+    #020617,
+    #0f172a,
+    #111827
+  );
+
+  min-height:100vh;
+
+  font-family:Arial;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:15px;
+
+  color:white;
+}
+
+.box{
+
+  width:100%;
+  max-width:430px;
+
+  background:
+  rgba(15,23,42,0.96);
+
+  border:
+  1px solid rgba(255,255,255,0.05);
+
+  border-radius:24px;
+
+  padding:22px;
+
+  box-shadow:
+  0 0 40px rgba(37,99,235,0.25);
+}
+
+h1{
+
+  text-align:center;
+
+  font-size:30px;
+
+  margin-bottom:22px;
+
+  color:white;
+}
+
+/* GENDER */
+
+.genderBox{
+
+  width:100%;
+
+  padding:14px;
+
+  border-radius:16px;
+
+  text-align:center;
+
+  font-size:22px;
+
+  font-weight:bold;
+
+  letter-spacing:2px;
+
+  margin-bottom:20px;
+
+  transition:0.3s;
+
+  box-shadow:
+  0 0 25px rgba(37,99,235,0.25);
+}
+
+/* BUTTON */
+
+.generateBtn{
+
+  width:100%;
+
+  border:none;
+
+  padding:15px;
+
+  border-radius:16px;
+
+  background:
+  linear-gradient(
+    90deg,
+    #2563eb,
+    #3b82f6
+  );
+
+  color:white;
+
+  font-size:16px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  margin-bottom:20px;
+
+  transition:0.3s;
+}
+
+.generateBtn:hover{
+  transform:scale(1.02);
+}
+
+/* ITEMS */
+
+.item{
+
+  background:
+  rgba(255,255,255,0.04);
+
+  border:
+  1px solid rgba(255,255,255,0.05);
+
+  border-radius:16px;
+
+  padding:15px;
+
+  margin-bottom:14px;
+
+  cursor:pointer;
+
+  transition:0.25s;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.item:hover{
+
+  transform:translateY(-2px);
+
+  border-color:
+  rgba(59,130,246,0.4);
+}
+
+.label{
+
+  color:#60a5fa;
+
+  font-size:13px;
+
+  margin-bottom:6px;
+
+  display:block;
+
+  font-weight:bold;
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+}
+
+.value{
+
+  font-size:16px;
+
+  color:white;
+
+  word-break:break-word;
+}
+
+/* COPY ANIMATION */
+
+.copied{
+
+  animation:copiedAnim 0.4s;
+}
+
+@keyframes copiedAnim{
+
+  0%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(0.96);
+    background:#2563eb;
+  }
+
+  100%{
+    transform:scale(1);
+  }
+}
+
+/* COPY ALL */
+
+.copyAll{
+
+  width:100%;
+
+  border:none;
+
+  padding:16px;
+
+  border-radius:16px;
+
+  background:
+  linear-gradient(
+    90deg,
+    #06b6d4,
+    #2563eb
+  );
+
+  color:white;
+
+  font-size:16px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  margin-top:10px;
+
+  transition:0.3s;
+}
+
+.copyAll:hover{
+  transform:scale(1.02);
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+  h1{
+    font-size:24px;
+  }
+
+  .genderBox{
+    font-size:18px;
+  }
+
+  .value{
+    font-size:14px;
+  }
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="box">
+
+<h1>USA User Generator</h1>
+
+<div class="genderBox"
+id="genderBox">
+MALE
+</div>
+
+<button class="generateBtn"
+onclick="generateUser()">
+Generate User
+</button>
+
+<div class="item"
+onclick="copyItem(this,'firstName')">
+
+<span class="label">
+First Name
+</span>
+
+<span class="value"
+id="firstName">
+-
+</span>
+
+</div>
+
+<div class="item"
+onclick="copyItem(this,'lastName')">
+
+<span class="label">
+Last Name
+</span>
+
+<span class="value"
+id="lastName">
+-
+</span>
+
+</div>
+
+<div class="item"
+onclick="copyItem(this,'email')">
+
+<span class="label">
+Email
+</span>
+
+<span class="value"
+id="email">
+-
+</span>
+
+</div>
+
+<div class="item"
+onclick="copyItem(this,'street')">
+
+<span class="label">
+Street
+</span>
+
+<span class="value"
+id="street">
+-
+</span>
+
+</div>
+
+<div class="item"
+onclick="copyItem(this,'postal')">
+
+<span class="label">
+Postal
+</span>
+
+<span class="value"
+id="postal">
+-
+</span>
+
+</div>
+
+<div class="item"
+onclick="copyItem(this,'city')">
+
+<span class="label">
+City
+</span>
+
+<span class="value"
+id="city">
+-
+</span>
+
+</div>
+
+<div class="item"
+onclick="copyItem(this,'state')">
+
+<span class="label">
+State
+</span>
+
+<span class="value"
+id="state">
+-
+</span>
+
+</div>
+
+<div class="item"
+onclick="copyItem(this,'country')">
+
+<span class="label">
+Country
+</span>
+
+<span class="value"
+id="country">
+-
+</span>
+
+</div>
+
+<div class="item"
+onclick="copyItem(this,'phone')">
+
+<span class="label">
+Phone Number
+</span>
+
+<span class="value"
+id="phone">
+-
+</span>
+
+</div>
+
+<script>
+
+async function generateUser(){
+
+  // RANDOM USER
+  const userResponse =
+  await fetch(
+    "https://randomuser.me/api/?nat=us"
+  );
+
+  const userData =
+  await userResponse.json();
+
+  const user =
+  userData.results[0];
+
+  // IP INFO
+  const ipResponse =
+  await fetch(
+    "https://ipinfo.io/json"
+  );
+
+  const ipData =
+  await ipResponse.json();
+
+  // GENDER
+  const genderBox =
+  document.getElementById(
+    "genderBox"
+  );
+
+  if(user.gender === "male"){
+
+    genderBox.innerHTML =
+    "👨 MALE";
+
+    genderBox.style.background =
+    "linear-gradient(90deg,#2563eb,#1d4ed8)";
+
+  }else{
+
+    genderBox.innerHTML =
+    "👩 FEMALE";
+
+    genderBox.style.background =
+    "linear-gradient(90deg,#ec4899,#db2777)";
+  }
+
+  // CUSTOM EMAIL
+  const domains = [
+  "gmail.com",
+  "yahoo.com"
+];
+
+const randomDomain =
+  domains[Math.floor(Math.random() * domains.length)];
+
+const email =
+  user.name.first.toLowerCase() +
+  user.name.last.toLowerCase() +
+  (Math.floor(Math.random() * 2) + 1) +
+  "@" +
+  randomDomain;
+
+  // SHOW DATA
+
+  document.getElementById(
+    "firstName"
+  ).innerText =
+  user.name.first;
+
+  document.getElementById(
+    "lastName"
+  ).innerText =
+  user.name.last;
+
+  document.getElementById(
+    "email"
+  ).innerText =
+  email;
+
+  document.getElementById(
+    "street"
+  ).innerText =
+
+    user.location.street.number +
+    " " +
+    user.location.street.name;
+
+  document.getElementById(
+    "postal"
+  ).innerText =
+  ipData.postal;
+
+  document.getElementById(
+    "city"
+  ).innerText =
+  ipData.city;
+
+  document.getElementById(
+    "state"
+  ).innerText =
+  ipData.region;
+
+  document.getElementById(
+    "country"
+  ).innerText =
+  ipData.country;
+
+  document.getElementById(
+    "phone"
+  ).innerText =
+  user.phone;
+
+}
+
+// COPY SINGLE
+function copyItem(element,id){
+
+  const text =
+  document.getElementById(id)
+  .innerText;
+
+  navigator.clipboard
+  .writeText(text);
+
+  element.classList.add(
+    "copied"
+  );
+
+  setTimeout(()=>{
+
+    element.classList.remove(
+      "copied"
+    );
+
+  },400);
+
+}
+
+// AUTO LOAD
+generateUser();
+
+</script>
+
+</body>
+</html>
